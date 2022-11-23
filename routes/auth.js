@@ -5,14 +5,17 @@ import * as path from 'path';
 import fileUpload from 'express-fileupload'
 import { v2 as cloudinary } from 'cloudinary'
 import { url } from "inspector";
+import dotenv from 'dotenv'
 
+dotenv.config()
 const authrouter = express.Router()
 
 cloudinary.config({
 
-  cloud_name:'dcnjdzs3a',
-  api_key:'447923356924346',
-  api_secret:'BEN6Khh0nmN-8i2bLms5mkFyxLo'
+
+  cloud_name:process.env.CLOUD_NAME,
+  api_key:process.env.API_KEY,
+  api_secret:process.env.API_SECRET
 })
 
 
@@ -40,7 +43,7 @@ const filefilter = (req, file, cb) => {
 const upload= multer({storage:storage, fileFilter:filefilter})
 //post method..................
 authrouter.post("/post", async (req, res) => {
-    try{
+    // try{
 const file= req.files.Photo
 cloudinary.uploader.upload(file.tempFilePath,(err,result)=>{
 
@@ -58,9 +61,9 @@ cloudinary.uploader.upload(file.tempFilePath,(err,result)=>{
      files.save();
     res.status(200).send(files);
   })
-}catch(error) {
-    res.status(400).send("please fill the data");
- }
+// }catch(error) {
+//     res.status(400).send("please fill the data");
+//  }
 })
 
 authrouter.get("/get", async (req, res) => {
