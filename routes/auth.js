@@ -6,6 +6,7 @@ import fileUpload from 'express-fileupload'
 import { v2 as cloudinary } from 'cloudinary'
 import { url } from "inspector";
 import dotenv from 'dotenv'
+import adduservali from '../validation/userValidation.js'
 
 dotenv.config()
 const authrouter = express.Router()
@@ -42,8 +43,8 @@ const filefilter = (req, file, cb) => {
 }
 const upload= multer({storage:storage, fileFilter:filefilter})
 //post method..................
-authrouter.post("/post", async (req, res) => {
-    // try{
+authrouter.post("/post",adduservali, async (req, res) => {
+    try{
 const file= req.files.Photo
 cloudinary.uploader.upload(file.tempFilePath,(err,result)=>{
 
@@ -55,15 +56,14 @@ cloudinary.uploader.upload(file.tempFilePath,(err,result)=>{
         Post:req.body.Post,
         Description:req.body.Description,
         Active:req.body.Active
-  
       });
       
-     files.save();
+    files.save();
     res.status(200).send(files);
   })
-// }catch(error) {
-//     res.status(400).send("please fill the data");
-//  }
+}catch(error) {
+    res.status(400).send("something wrong");
+ }
 })
 
 authrouter.get("/get", async (req, res) => {

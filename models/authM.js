@@ -10,8 +10,8 @@ const authSchema=new mongoose.Schema({
     Photo:{
         type: String,
         },
-        cloudinary_id: {
-            type: String,
+    cloudinary_id: {
+        type: String,
           },
     Post:{
         type:String,

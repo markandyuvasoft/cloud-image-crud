@@ -13,6 +13,7 @@
   "dependencies": {
     "@babel/node": "^7.17.10",
     "@babel/preset-env": "^7.18.0",
+    "@hapi/joi": "^17.1.1",
     "babel-plugin-add-module-exports": "^1.0.4",
     "body-parser": "^1.20.0",
     "cloudinary": "^1.32.0",
