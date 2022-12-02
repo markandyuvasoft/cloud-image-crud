@@ -11,6 +11,9 @@ import adduservali from '../validation/userValidation.js'
 dotenv.config()
 const authrouter = express.Router()
 
+
+// cloudinary.config({
+
 cloudinary.config({
 
 
