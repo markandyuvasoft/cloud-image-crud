@@ -12,9 +12,6 @@ dotenv.config()
 const authrouter = express.Router()
 
 
-// cloudinary.config({
-// cloudinary.config({
-
 cloudinary.config({
 
 
